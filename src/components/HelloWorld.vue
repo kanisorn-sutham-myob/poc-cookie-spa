@@ -16,7 +16,7 @@ export default {
   methods: {
     refresh: async () => {
       const data = await axios
-        .get("http://localhost:3000/", {
+        .get("https://moobyang-poc-cookie.herokuapp.com/", {
           withCredentials: true,
         })
         .then((res) => res.data);
