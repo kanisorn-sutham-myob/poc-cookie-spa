@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Cookie POC App</h1>
+    <h1>SameSite Cookie POC App</h1>
     <button v-on:click="refresh">refresh cookie</button>
     <button v-on:click="setNewCookie">
       set Only SameSiteNotSetAndNotSecure to be SameSiteNoneAndSecure)
@@ -23,7 +23,6 @@ export default {
           withCredentials: true,
         })
         .then((res) => res.data);
-      console.log(data);
     },
     setNewCookie: async () => {
       const data = await axios
@@ -31,7 +30,6 @@ export default {
           withCredentials: true,
         })
         .then((res) => res.data);
-      console.log(data);
     },
   },
 };
