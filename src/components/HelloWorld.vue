@@ -33,13 +33,13 @@ export default {
   methods: {
     createCookieBackend: () => {
       axios.get(
-        "https://kanisorn-sutham-poc-cookie.herokuapp.com/get_cookies",
+        "https://kanisorn-sutham-poc-cookies.herokuapp.com/get_cookies",
         defaultAxiosConfig
       );
     },
     setC4CookieBackend: () => {
       axios.get(
-        "https://kanisorn-sutham-poc-cookie.herokuapp.com/set_new_cookie",
+        "https://kanisorn-sutham-poc-cookies.herokuapp.com/set_new_cookie",
         defaultAxiosConfig
       );
     },
