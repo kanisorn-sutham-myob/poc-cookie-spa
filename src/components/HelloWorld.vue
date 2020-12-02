@@ -1,9 +1,21 @@
 <template>
   <div class="hello">
     <h1>SameSite Cookie POC App</h1>
-    <button v-on:click="refresh">refresh cookie</button>
-    <button v-on:click="setNewCookie">
-      set Only SameSiteNotSetAndNotSecure to be SameSiteNoneAndSecure)
+    <h3>backend-service domain</h3>
+    <div>
+      <button v-on:click="createCookieBackend">
+        createCookie for backend-service domain
+      </button>
+      <button v-on:click="setC4CookieBackend">
+        setCookie (Only C4) for backend-service domain
+      </button>
+    </div>
+    <h3>Same as this domain</h3>
+    <button v-on:click="createCookieBackend">
+      createCookie for backend-service domain
+    </button>
+    <button v-on:click="setC4CookieBackend">
+      setCookie (Only C4) for backend-service domain
     </button>
   </div>
 </template>
@@ -11,25 +23,31 @@
 <script>
 import axios from "axios";
 
+const defaultAxiosConfig = { withCredentials: true };
+
 export default {
   name: "HelloWorld",
   props: {
     msg: String,
   },
   methods: {
-    refresh: async () => {
-      await axios
-        .get("https://moobyang-poc-cookie.herokuapp.com/refresh", {
-          withCredentials: true,
-        })
-        .then((res) => res.data);
+    createCookieBackend: () => {
+      axios.get(
+        "https://moobyang-poc-cookie.herokuapp.com/get_cookies",
+        defaultAxiosConfig
+      );
     },
-    setNewCookie: async () => {
-      await axios
-        .get("https://moobyang-poc-cookie.herokuapp.com/set-new-cookie", {
-          withCredentials: true,
-        })
-        .then((res) => res.data);
+    setC4CookieBackend: () => {
+      axios.get(
+        "https://moobyang-poc-cookie.herokuapp.com/set_new_cookie",
+        defaultAxiosConfig
+      );
+    },
+    createCookieSameDomain: () => {
+      axios.get("/get_cookies", defaultAxiosConfig);
+    },
+    setC4CookieSameDomain: () => {
+      axios.get("/set_new_cookie", defaultAxiosConfig);
     },
   },
 };
@@ -49,5 +67,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+button {
+  margin: 4px;
 }
 </style>
