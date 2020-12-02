@@ -4,18 +4,18 @@
     <h3>backend-service domain</h3>
     <div>
       <button v-on:click="createCookieBackend">
-        createCookie for backend-service domain
+        createCookie <i>with</i> <b>backend-service domain</b>
       </button>
       <button v-on:click="setC4CookieBackend">
-        setCookie (Only C4) for backend-service domain
+        setCookie (Only C4) <i>with</i> <b>backend-service domain</b>
       </button>
     </div>
     <h3>Same as this domain</h3>
-    <button v-on:click="createCookieBackend">
-      createCookie for backend-service domain
+    <button v-on:click="createCookieSameDomain">
+      createCookie <i>with</i> <b>this domain</b>
     </button>
-    <button v-on:click="setC4CookieBackend">
-      setCookie (Only C4) for backend-service domain
+    <button v-on:click="setC4CookieSameDomain">
+      setCookie (Only C4) <i>with</i> <b>this domain</b>
     </button>
   </div>
 </template>
