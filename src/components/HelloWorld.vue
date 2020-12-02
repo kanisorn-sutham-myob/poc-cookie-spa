@@ -2,6 +2,9 @@
   <div class="hello">
     <h1>Cookie POC App</h1>
     <button v-on:click="refresh">refresh cookie</button>
+    <button v-on:click="setNewCookie">
+      set Only SameSiteNotSetAndNotSecure to be SameSiteNoneAndSecure)
+    </button>
   </div>
 </template>
 
@@ -17,6 +20,14 @@ export default {
     refresh: async () => {
       const data = await axios
         .get("https://moobyang-poc-cookie.herokuapp.com/", {
+          withCredentials: true,
+        })
+        .then((res) => res.data);
+      console.log(data);
+    },
+    setNewCookie: async () => {
+      const data = await axios
+        .get("https://moobyang-poc-cookie.herokuapp.com/set-new-cookie", {
           withCredentials: true,
         })
         .then((res) => res.data);
