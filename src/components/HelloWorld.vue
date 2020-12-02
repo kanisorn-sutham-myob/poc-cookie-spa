@@ -44,10 +44,10 @@ export default {
       );
     },
     createCookieSameDomain: () => {
-      axios.get("/get_cookies", defaultAxiosConfig);
+      axios.get("/api/get_cookies", defaultAxiosConfig);
     },
     setC4CookieSameDomain: () => {
-      axios.get("/set_new_cookie", defaultAxiosConfig);
+      axios.get("/api/set_new_cookie", defaultAxiosConfig);
     },
   },
 };
