@@ -19,7 +19,7 @@ export default {
   methods: {
     refresh: async () => {
       const data = await axios
-        .get("https://moobyang-poc-cookie.herokuapp.com/", {
+        .get("https://moobyang-poc-cookie.herokuapp.com/refresh", {
           withCredentials: true,
         })
         .then((res) => res.data);
