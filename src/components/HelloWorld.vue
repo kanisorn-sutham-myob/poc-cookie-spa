@@ -1,53 +1,51 @@
 <template>
   <div class="hello">
-    <h1>SameSite Cookie POC App</h1>
-    <h3>backend-service domain</h3>
-    <div>
-      <button v-on:click="createCookieBackend">
-        createCookie <i>with</i> <b>backend-service domain</b>
-      </button>
-      <button v-on:click="setC4CookieBackend">
-        setCookie (Only C4) <i>with</i> <b>backend-service domain</b>
-      </button>
-    </div>
-    <h3>Same as this domain</h3>
-    <button v-on:click="createCookieSameDomain">
-      createCookie <i>with</i> <b>this domain</b>
-    </button>
-    <button v-on:click="setC4CookieSameDomain">
-      setCookie (Only C4) <i>with</i> <b>this domain</b>
-    </button>
+    <h1>TW Essential-com-au</h1>
+    <h3>cookies list</h3>
+    <p>
+      C1__SameSiteNotSet_And_Secure:
+      <u>{{ getCookie("C1__SameSiteNotSet_And_Secure") === "__value" }} </u>
+    </p>
+    <p>
+      C2__SameSiteNone_And_Secure:
+      <u>{{ getCookie("C2__SameSiteNone_And_Secure") === "__value" }} </u>
+    </p>
+    <p>
+      C3__SameSiteNone_And_NoSecure:
+      <u>{{ getCookie("C3__SameSiteNone_And_NoSecure") === "__value" }} </u>
+    </p>
+    <p>
+      C4__SameSiteNotSet_And_NoSecure:
+      <u>{{ getCookie("C4__SameSiteNotSet_And_NoSecure") === "__value" }} </u>
+    </p>
+    <button v-on:click="redirect">simulate redirect to tw-essential-com</button>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
-const defaultAxiosConfig = { withCredentials: true };
-
 export default {
   name: "HelloWorld",
   props: {
     msg: String,
   },
   methods: {
-    createCookieBackend: () => {
-      axios.get(
-        "https://kanisorn-sutham-poc-cookies.herokuapp.com/get_cookies",
-        defaultAxiosConfig
-      );
+    redirect: () => {
+      window.location.href = "https://tw-essential-com.herokuapp.com/";
     },
-    setC4CookieBackend: () => {
-      axios.get(
-        "https://kanisorn-sutham-poc-cookies.herokuapp.com/set_new_cookie",
-        defaultAxiosConfig
-      );
-    },
-    createCookieSameDomain: () => {
-      axios.get("/api/get_cookies", defaultAxiosConfig);
-    },
-    setC4CookieSameDomain: () => {
-      axios.get("/api/set_new_cookie", defaultAxiosConfig);
+    getCookie: (cname) => {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
     },
   },
 };
@@ -71,5 +69,9 @@ a {
 
 button {
   margin: 4px;
+}
+
+u {
+  font-weight: bold;
 }
 </style>
