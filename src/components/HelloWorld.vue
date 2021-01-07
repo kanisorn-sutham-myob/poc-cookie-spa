@@ -4,19 +4,19 @@
     <h3>cookies list</h3>
     <p>
       C1__SameSiteNotSet_And_Secure:
-      <u>{{ getCookie("C1__SameSiteNotSet_And_Secure") === "__value" }} </u>
+      <u>{{ getCookie("C1__SameSiteNotSet_And_Secure") === "__value__" }} </u>
     </p>
     <p>
       C2__SameSiteNone_And_Secure:
-      <u>{{ getCookie("C2__SameSiteNone_And_Secure") === "__value" }} </u>
+      <u>{{ getCookie("C2__SameSiteNone_And_Secure") === "__value__" }} </u>
     </p>
     <p>
       C3__SameSiteNone_And_NoSecure:
-      <u>{{ getCookie("C3__SameSiteNone_And_NoSecure") === "__value" }} </u>
+      <u>{{ getCookie("C3__SameSiteNone_And_NoSecure") === "__value__" }} </u>
     </p>
     <p>
       C4__SameSiteNotSet_And_NoSecure:
-      <u>{{ getCookie("C4__SameSiteNotSet_And_NoSecure") === "__value" }} </u>
+      <u>{{ getCookie("C4__SameSiteNotSet_And_NoSecure") === "__value__" }} </u>
     </p>
     <button v-on:click="redirect">simulate redirect to tw-essential-com</button>
   </div>
@@ -30,7 +30,8 @@ export default {
   },
   methods: {
     redirect: () => {
-      window.location.href = "https://tw-essential-com.herokuapp.com/";
+      window.location.href =
+        "http://poc-essential.jac-poc-domain-routing.link/au/";
     },
     getCookie: (cname) => {
       var name = cname + "=";
